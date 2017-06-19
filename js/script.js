@@ -352,7 +352,7 @@ function agegroup(){
 				}]
 						});
 					}, 40)
-		return '<div id="stacked_tooltip"><div class="row heading-test"><div class="edu-head-row">Education without Literacy</div></div><div class="edu-tool-dot-l"></div><div class="border-btm"></div><div class="edu-tool-dot-r"></div><div class="row"><div class="col-md-6"><div class="row edu-absolute-no"><center><h2 id="edu_absolute_no">2,396</h2></center></div><div class="row edu-percentage"><center><h5 id="edu_absolute_no">(35%)</h5></center></div></div><div class="col-md-6"><div id="hc-tooltip"></div></div></div><div>';
+		return '';
 				}
 			},
 
@@ -2405,7 +2405,7 @@ $('#chartdiv').highcharts({
         }]
 				});
 			}, 40)
-return '<div id="stacked_tooltip"><div class="row heading-test"><div class="edu-head-row">Education without Literacy</div></div><div class="edu-tool-dot-l"></div><div class="border-btm"></div><div class="edu-tool-dot-r"></div><div class="row"><div class="col-md-6"><div class="row edu-absolute-no"><center><h2 id="edu_absolute_no">2,396</h2></center></div><div class="row edu-percentage"><center><h5 id="edu_absolute_no">(35%)</h5></center></div></div><div class="col-md-6"><div id="hc-tooltip"></div></div></div><div>';
+return '';
 		}
     },
 	
