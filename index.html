@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Census India 2011-Education</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css"/> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/d3.v3.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+	<script src="http://code.highcharts.com/maps/modules/map.js"></script>
+	<script src="https://code.highcharts.com/mapdata/countries/in/in-all.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse nav-border-radius">
+	  <div class="container-fluid">
+		<div class="navbar-header nav-width">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="nav-census-text">
+						<p>Census India</p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<p class="navbar-brand header-color">Literacy And Level of Education</p>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+		</div>
+	  </div>
+	</nav>
+	<div class="container-fluid">
+	  <div class="row">
+		<div class="col-md-6 chart-div">
+			<div id="sunburst">
+				<div id="explanation">
+					<p class="explanation-text">Literacy is at the heart of basic education for all, and essential for eradicating poverty, reducing child mortality, curbing population growth, achieving gender equality and ensuring sustainable development, peace and democracy.</p> 
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 map-pad">
+			<div class="literacyratio"><br>
+				<div class="row">
+					<div class="col-md-2">
+						<div class="literacy-dot-l"></div>
+					</div>
+					<div class="col-md-2 borderbottom">
+						<p class="ratio-lit-card" id="literateID">76.1K</p>
+					</div>
+					<div class="col-md-5 borderbottom">
+						<p class="p-literacy">Literate</p>
+					</div>
+					<div class="col-md-2">
+						<div class="literacy-dot-r"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-2">
+						<p class="ratio-lit-card" id="illiterateID">23.8K</p>
+					</div>
+					<div class="col-md-5">
+						<p class="p-literacy">Illiterate</p>
+					</div>
+				</div>
+			</div>
+			<br><br><br>
+			<div id="mapId"></div> 
+			<svg width="400" height="630" id="myBgSvg" style="z-index:1;margin-top: -52em;background:none;position:fixed;opacity:1;"></svg>
+		</div>
+		<div class="col-md-2" style="margin-left: 26px;">
+			<br><br><br><br><br>
+			<div class="row MF-ratio">
+				<div class="row p-ratio-row">
+					<div class="col-md-1">
+						<div class="dot-bottom"></div>
+					</div>
+					<div class="col-md-9 card-border-bottom">
+						<div class="row">
+							<div class="col-md-2">
+								<p class="ratiocls">3:2</p>
+							</div>
+							<div class="col-md-10">
+								<p class="p2-ratio">Male Female Ratio</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1">
+						<div class="dot-right"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4" id="maleimg"><img class="mf-img-l" src="img/60-m.png"></div>
+					<div class="col-md-1 divider"></div>
+					<div class="col-md-4" id="femaleimg"><img class="mf-img" src="img/40-f.png"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-2"><p class="malerationper" id="malepercent">66.9%</p></div>
+					<div class="col-md-3"></div>
+					<div class="col-md-2"><p class="femalerationper" id="femalepercent">33.1%</p></div>
+				</div>
+			</div>
+			<br>
+			<div class="row MF-ratio">
+				<div class="row p-ratio-row">
+					<div class="col-md-1">
+						<div class="dot-bottom"></div>
+					</div>
+					<div class="col-md-9 card-border-bottom">
+						<div class="row">
+							<div class="col-md-7">
+								<p class="ratiocls">Age-wise</p>
+							</div>
+							<div class="col-md-5">
+								<p class="p2-ratio-card2">Literacy split</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1">
+						<div class="dot-right"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-11">
+						<div id="age_bar" style="width: 230px; height: 130px;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+		  <div class="col-md-7"></div>
+		  <div class="col-md-5 edu-bar-bg">
+			  <div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-1">
+					<div class="edu-dot-l"></div>
+				  </div>
+				<div class="col-md-4" style="border-bottom: 2px solid #000;">
+					<p class="ratiocls" style="text-indent: 5px;">Education Level</p>
+				</div>
+				<div class="col-md-1" style="border-bottom: 2px solid #000;">
+					<p class="p2-ratio-card2" style="margin-top: 8px !important;text-indent: 9px;">split</p>
+				</div>
+				<div class="col-md-1">
+					<div class="edu-dot-r"></div>  
+				</div>
+			</div>
+			 <div id="chartdiv" class="edu-bar" style="height:80px; width: 500px;"></div>
+		  </div>
+		</div>
+		  
+	  </div>
+	</div>
+</body>
+<script type="text/javascript" src="js/script.js"></script>
+<script src="js/draw_svg_line.js"></script>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+</html>
